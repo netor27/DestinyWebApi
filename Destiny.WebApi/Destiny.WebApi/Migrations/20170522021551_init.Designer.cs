@@ -3,12 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Destiny.Data;
+using Destiny.WebApi.Entities.Context;
 
-namespace Destiny.Data.Migrations
+namespace Destiny.WebApi.Migrations
 {
-    [DbContext(typeof(DestinyContext))]
-    [Migration("20170522005949_init")]
+    [DbContext(typeof(DestinyDbContext))]
+    [Migration("20170522021551_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,14 +17,20 @@ namespace Destiny.Data.Migrations
                 .HasAnnotation("ProductVersion", "1.1.2")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Destiny.Domain.Perk", b =>
+            modelBuilder.Entity("Destiny.WebApi.Entities.Perk", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200);
 
-                    b.Property<string>("Name");
+                    b.Property<bool>("IsActive");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50);
 
                     b.Property<int>("WeaponId");
 
@@ -35,27 +41,33 @@ namespace Destiny.Data.Migrations
                     b.ToTable("Perks");
                 });
 
-            modelBuilder.Entity("Destiny.Domain.Weapon", b =>
+            modelBuilder.Entity("Destiny.WebApi.Entities.Weapon", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Description");
+                    b.Property<string>("Description")
+                        .HasMaxLength(200);
 
-                    b.Property<string>("ImageUrl");
+                    b.Property<string>("ImageUrl")
+                        .IsRequired();
 
-                    b.Property<string>("Name");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(75);
 
-                    b.Property<int>("WeaponTypeId");
+                    b.Property<string>("WeaponType")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.HasKey("Id");
 
                     b.ToTable("Weapons");
                 });
 
-            modelBuilder.Entity("Destiny.Domain.Perk", b =>
+            modelBuilder.Entity("Destiny.WebApi.Entities.Perk", b =>
                 {
-                    b.HasOne("Destiny.Domain.Weapon")
+                    b.HasOne("Destiny.WebApi.Entities.Weapon", "Weapon")
                         .WithMany("Perks")
                         .HasForeignKey("WeaponId")
                         .OnDelete(DeleteBehavior.Cascade);

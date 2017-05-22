@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
 
-namespace Destiny.Domain
+namespace Destiny.WebApi.Entities
 {
     public class Weapon
     {

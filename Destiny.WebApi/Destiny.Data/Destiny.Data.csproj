@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Destiny.Domain\Destiny.Domain.csproj" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

@@ -1,30 +1,30 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Collections.Generic;
 
-namespace Destiny.Domain
+namespace Destiny.WebApi.Entities
 {
-    public class Weapon
+    public class Perk
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(75)]
+        [MaxLength(50)]
         public string Name { get; set; }
 
         [Required]
-        [MaxLength(30)]
-        public string WeaponType { get; set; }
+        public bool IsActive { get; set; }
 
+        [Required]
         [MaxLength(200)]
         public string Description { get; set; }
 
-        [Required]
-        public string ImageUrl { get; set; }
-
-
-        public List<Perk> Perks { get; set; } = new List<Perk>();
+        [ForeignKey("WeaponId")]
+        public Weapon Weapon { get; set; }
+        public int WeaponId
+        {
+            get; set;
+        }
     }
 }

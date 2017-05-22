@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace Destiny.Data.Migrations
+namespace Destiny.WebApi.Migrations
 {
     public partial class init : Migration
     {
@@ -15,10 +15,10 @@ namespace Destiny.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(nullable: true),
-                    ImageUrl = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
-                    WeaponTypeId = table.Column<int>(nullable: false)
+                    Description = table.Column<string>(maxLength: 200, nullable: true),
+                    ImageUrl = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(maxLength: 75, nullable: false),
+                    WeaponType = table.Column<string>(maxLength: 30, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,8 +31,9 @@ namespace Destiny.Data.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Description = table.Column<string>(nullable: true),
-                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(maxLength: 200, nullable: false),
+                    IsActive = table.Column<bool>(nullable: false),
+                    Name = table.Column<string>(maxLength: 50, nullable: false),
                     WeaponId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
