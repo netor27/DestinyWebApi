@@ -11,7 +11,7 @@ namespace Destiny.Domain
         public string Name { get; set; }
         public int WeaponTypeId { get; set; }
         public string Description { get; set; }
-        public Uri ImageUri { get; set; }
-        public List<Perk> Perks { get; set; }
+        public string ImageUrl { get; set; }
+        public List<WeaponPerk> WeaponPerks { get; set; }
     }
 }
