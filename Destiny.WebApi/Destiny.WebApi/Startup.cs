@@ -34,7 +34,6 @@ namespace Destiny.WebApi
             {
                 c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
             });
-
             
             var connectionString = this.Configuration["connectionStrings:DestinyDBConnectionString"];
             services.AddDbContext<DestinyDbContext>(o => o.UseSqlServer(connectionString));
